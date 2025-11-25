@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <queries>
+        <package android:name="com.goodwy.audiobook.debug" />
+        <package android:name="com.goodwy.audiobook" />
+        <package android:name="com.goodwy.files.debug" />
+        <package android:name="com.goodwy.files" />
+        <package android:name="com.goodwy.dialer.debug" />
+        <package android:name="com.goodwy.dialer" />
+        <package android:name="com.goodwy.contacts.debug" />
+        <package android:name="com.goodwy.contacts" />
+        <package android:name="com.goodwy.smsmessenger.debug" />
+        <package android:name="com.goodwy.smsmessenger" />
+        <package android:name="com.goodwy.voicerecorder.debug" />
+        <package android:name="com.goodwy.voicerecorder" />
+        <package android:name="com.goodwy.voicerecorderfree.debug" />
+        <package android:name="com.goodwy.voicerecorderfree" />
+    </queries>
+
+    <uses-feature
+        android:name="android.hardware.faketouch"
+        android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.screen.portrait"
+        android:required="false" />
+
+    <uses-permission
+        android:name="android.permission.USE_BIOMETRIC"
+        tools:node="remove" />
+
+    <uses-permission
+        android:name="${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        tools:node="remove" />
+
+    <!-- used by Reprint -->
+    <uses-permission
+        android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY"
+        tools:node="remove" />
+
+    <uses-permission android:name="com.goodwy.android.permission.WRITE_GLOBAL_SETTINGS" />
+
+    <application android:supportsRtl="true">
+        <activity
+            android:name="com.goodwy.commons.activities.ContributorsActivity"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:label="@string/contributors"
+            android:parentActivityName="com.goodwy.commons.activities.AboutActivity" />
+
+        <activity
+            android:name="com.goodwy.commons.activities.FAQActivity"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:label="@string/frequently_asked_questions"
+            android:parentActivityName="com.goodwy.commons.activities.AboutActivity" />
+
+        <activity
+            android:name="com.goodwy.commons.activities.LicenseActivity"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:label="@string/third_party_licences"
+            android:parentActivityName="com.goodwy.commons.activities.AboutActivity" />
+
+        <activity
+            android:name=".activities.ManageBlockedNumbersActivity"
+            android:configChanges="orientation"
+            android:enableOnBackInvokedCallback="true"
+            android:exported="false"
+            android:label="@string/manage_blocked_numbers"
+            tools:targetApi="tiramisu" />
+
+        <activity
+            android:name=".activities.AppLockActivity"
+            android:exported="false" />
+
+        <receiver
+            android:name=".receivers.RightBroadcastReceiver"
+            android:exported="true"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.goodwy.android.GLOBAL_CONFIG_UPDATED" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

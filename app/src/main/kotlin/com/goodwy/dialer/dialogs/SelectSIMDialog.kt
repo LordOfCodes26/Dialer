@@ -2,6 +2,7 @@ package com.goodwy.dialer.dialogs
 
 import android.annotation.SuppressLint
 import android.telecom.PhoneAccountHandle
+import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -15,6 +16,7 @@ import com.goodwy.dialer.databinding.DialogSelectSimBinding
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.getAvailableSIMCardLabels
 
+@Suppress("CAST_NEVER_SUCCEEDS")
 @SuppressLint("MissingPermission", "SetTextI18n")
 class SelectSIMDialog(
     val activity: BaseSimpleActivity,
@@ -28,7 +30,7 @@ class SelectSIMDialog(
     init {
         val isManageSpeedDial = phoneNumber == ""
         binding.selectSimLabel.beGoneIf(isManageSpeedDial)
-        binding.divider.beGoneIf(isManageSpeedDial)
+        (binding.divider as? View)?.beGoneIf(isManageSpeedDial)
         binding.selectSimRememberHolder.beGoneIf(isManageSpeedDial)
         binding.selectSimRememberHolder.setOnClickListener {
             binding.selectSimRemember.toggle()

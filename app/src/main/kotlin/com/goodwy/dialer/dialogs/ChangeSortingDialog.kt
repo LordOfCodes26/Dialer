@@ -1,5 +1,6 @@
 package com.goodwy.dialer.dialogs
 
+import android.view.View
 import com.goodwy.commons.activities.BaseSimpleActivity
 import com.goodwy.commons.extensions.beGoneIf
 import com.goodwy.commons.extensions.getAlertDialogBuilder
@@ -10,6 +11,7 @@ import com.goodwy.dialer.R
 import com.goodwy.dialer.databinding.DialogChangeSortingBinding
 import com.goodwy.dialer.extensions.config
 
+@Suppress("CAST_NEVER_SUCCEEDS")
 class ChangeSortingDialog(val activity: BaseSimpleActivity, private val showCustomSorting: Boolean = false, private val callback: () -> Unit) {
     private val binding by activity.viewBinding(DialogChangeSortingBinding::inflate)
 
@@ -41,7 +43,7 @@ class ChangeSortingDialog(val activity: BaseSimpleActivity, private val showCust
                 val isCustomSorting = checkedId == sortingDialogRadioCustom.id
                 sortingDialogRadioOrder.beGoneIf(isCustomSorting)
                 sortingDialogSymbolsFirstCheckbox.beGoneIf(isCustomSorting)
-                divider.beGoneIf(isCustomSorting)
+                (divider as? View)?.beGoneIf(isCustomSorting)
             }
 
             val sortBtn = when {

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/placeholder_group_background">
+        <shape android:shape="oval">
+            <gradient android:startColor="#A4A8B5" android:endColor="#878b94"  android:angle="-90.0"/>
+        </shape>
+    </item>
+    <item android:id="@+id/attendee_icon"
+        android:drawable="@drawable/ic_people_vector"
+        android:height="@dimen/contact_photo_big_size"
+        android:width="@dimen/contact_photo_big_size" />
+</layer-list>
