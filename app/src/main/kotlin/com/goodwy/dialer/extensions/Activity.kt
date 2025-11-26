@@ -200,78 +200,13 @@ fun Activity.startContactEdit(contact: Contact) {
     }
 }
 
-fun SimpleActivity.launchPurchase() {
-    val productIdX1 = BuildConfig.PRODUCT_ID_X1
-    val productIdX2 = BuildConfig.PRODUCT_ID_X2
-    val productIdX3 = BuildConfig.PRODUCT_ID_X3
-    val subscriptionIdX1 = BuildConfig.SUBSCRIPTION_ID_X1
-    val subscriptionIdX2 = BuildConfig.SUBSCRIPTION_ID_X2
-    val subscriptionIdX3 = BuildConfig.SUBSCRIPTION_ID_X3
-    val subscriptionYearIdX1 = BuildConfig.SUBSCRIPTION_YEAR_ID_X1
-    val subscriptionYearIdX2 = BuildConfig.SUBSCRIPTION_YEAR_ID_X2
-    val subscriptionYearIdX3 = BuildConfig.SUBSCRIPTION_YEAR_ID_X3
-
-    startPurchaseActivity(
-        R.string.app_name_g,
-        productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
-        productIdListRu = arrayListOf(productIdX1, productIdX2, productIdX3),
-        subscriptionIdList = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
-        subscriptionIdListRu = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
-        subscriptionYearIdList = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
-        subscriptionYearIdListRu = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
-        playStoreInstalled = isPlayStoreInstalled(),
-        ruStoreInstalled = isRuStoreInstalled()
-    )
-}
-
-fun SimpleActivity.launchAbout() {
-    val licenses = LICENSE_GLIDE or LICENSE_INDICATOR_FAST_SCROLL or LICENSE_AUTOFITTEXTVIEW or LICENSE_EVENT_BUS
-
-    val faqItems = arrayListOf(
-        FAQItem(R.string.faq_1_title, R.string.faq_1_text),
-        FAQItem(R.string.faq_2_title, R.string.faq_2_text),
-        FAQItem(R.string.faq_3_title, R.string.faq_3_text_g),
-        FAQItem(R.string.faq_1_title_dialer_g, R.string.faq_1_text_dialer_g),
-        FAQItem(R.string.faq_2_title_dialer_g, R.string.faq_2_text_dialer_g),
-        FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons_g),
-        FAQItem(R.string.faq_6_title_commons, R.string.faq_6_text_commons_g),
-        FAQItem(R.string.faq_7_title_commons, R.string.faq_7_text_commons),
-        FAQItem(R.string.faq_9_title_commons, R.string.faq_9_text_commons)
-    )
-
-    val productIdX1 = BuildConfig.PRODUCT_ID_X1
-    val productIdX2 = BuildConfig.PRODUCT_ID_X2
-    val productIdX3 = BuildConfig.PRODUCT_ID_X3
-    val subscriptionIdX1 = BuildConfig.SUBSCRIPTION_ID_X1
-    val subscriptionIdX2 = BuildConfig.SUBSCRIPTION_ID_X2
-    val subscriptionIdX3 = BuildConfig.SUBSCRIPTION_ID_X3
-    val subscriptionYearIdX1 = BuildConfig.SUBSCRIPTION_YEAR_ID_X1
-    val subscriptionYearIdX2 = BuildConfig.SUBSCRIPTION_YEAR_ID_X2
-    val subscriptionYearIdX3 = BuildConfig.SUBSCRIPTION_YEAR_ID_X3
-
-    startAboutActivity(
-        appNameId = R.string.app_name_g,
-        licenseMask = licenses,
-        versionName = BuildConfig.VERSION_NAME,
-        faqItems = faqItems,
-        showFAQBeforeMail = true,
-        productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
-        productIdListRu = arrayListOf(productIdX1, productIdX2, productIdX3),
-        subscriptionIdList = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
-        subscriptionIdListRu = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
-        subscriptionYearIdList = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
-        subscriptionYearIdListRu = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
-        playStoreInstalled = isPlayStoreInstalled(),
-        ruStoreInstalled = isRuStoreInstalled()
-    )
-}
 
 fun SimpleActivity.showSnackbar(view: View) {
     view.performHapticFeedback()
 
     val snackbar = Snackbar.make(view, R.string.support_project_to_unlock, Snackbar.LENGTH_SHORT)
         .setAction(R.string.support) {
-            launchPurchase()
+//            launchPurchase()
         }
 
     val bgDrawable = ResourcesCompat.getDrawable(view.resources, R.drawable.button_background_16dp, null)

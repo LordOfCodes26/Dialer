@@ -95,69 +95,6 @@ class SettingsActivity : SimpleActivity() {
             setupMaterialScrollListener(settingsNestedScrollview, settingsToolbar)
         }
 
-        if (isPlayStoreInstalled()) {
-            //PlayStore
-            purchaseHelper.initBillingClient()
-            val iapList: ArrayList<String> = arrayListOf(productIdX1, productIdX2, productIdX3)
-            val subList: ArrayList<String> = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3, subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3)
-            purchaseHelper.retrieveDonation(iapList, subList)
-
-            purchaseHelper.isIapPurchased.observe(this) {
-                when (it) {
-                    is Tipping.Succeeded -> {
-                        config.isPro = true
-                        updatePro()
-                    }
-                    is Tipping.NoTips -> {
-                        config.isPro = false
-                        updatePro()
-                    }
-                    is Tipping.FailedToLoad -> {
-                    }
-                }
-            }
-
-            purchaseHelper.isSupPurchased.observe(this) {
-                when (it) {
-                    is Tipping.Succeeded -> {
-                        config.isProSubs = true
-                        updatePro()
-                    }
-                    is Tipping.NoTips -> {
-                        config.isProSubs = false
-                        updatePro()
-                    }
-                    is Tipping.FailedToLoad -> {
-                    }
-                }
-            }
-        }
-        if (isRuStoreInstalled()) {
-            //RuStore
-            ruStoreHelper = RuStoreHelper()
-            ruStoreHelper!!.checkPurchasesAvailability(this@SettingsActivity)
-
-            lifecycleScope.launch {
-                ruStoreHelper!!.eventStart
-                    .flowWithLifecycle(lifecycle)
-                    .collect { event ->
-                        handleEventStart(event)
-                    }
-            }
-
-            lifecycleScope.launch {
-                ruStoreHelper!!.statePurchased
-                    .flowWithLifecycle(lifecycle)
-                    .collect { state ->
-                        //update of purchased
-                        if (!state.isLoading && ruStoreIsConnected) {
-                            baseConfig.isProRuStore = state.purchases.firstOrNull() != null
-                            updatePro()
-                        }
-                    }
-            }
-        }
-
 //        checkWhatsNewDialog()
     }
 
@@ -165,8 +102,6 @@ class SettingsActivity : SimpleActivity() {
     override fun onResume() {
         super.onResume()
         setupToolbar(binding.settingsToolbar, NavigationIcon.Arrow)
-
-        setupPurchaseThankYou()
 
         setupCustomizeColors()
         setupDialPadOpen()
@@ -244,9 +179,6 @@ class SettingsActivity : SimpleActivity() {
         setupCallsExport()
         setupCallsImport()
 
-        setupTipJar()
-        setupAbout()
-
         updateTextColors(binding.settingsHolder)
 
         binding.apply {
@@ -264,8 +196,7 @@ class SettingsActivity : SimpleActivity() {
                 settingsNotificationsLabel,
                 settingsSecurityLabel,
                 settingsListViewLabel,
-                settingsBackupsLabel,
-                settingsOtherLabel).forEach {
+                settingsBackupsLabel,).forEach {
                 it.setTextColor(properPrimaryColor)
             }
 
@@ -279,8 +210,7 @@ class SettingsActivity : SimpleActivity() {
                 settingsNotificationsHolder,
                 settingsSecurityHolder,
                 settingsListViewHolder,
-                settingsBackupsHolder,
-                settingsOtherHolder
+                settingsBackupsHolder
             ).forEach {
                 it.setCardBackgroundColor(surfaceColor)
             }
@@ -292,8 +222,6 @@ class SettingsActivity : SimpleActivity() {
                 settingsImportCallsChevron,
                 settingsManageBlockedNumbersChevron,
                 settingsManageSpeedDialChevron,
-                settingsTipJarChevron,
-                settingsAboutChevron,
                 settingsDialpadStyleChevron
             ).forEach {
                 it.applyColorFilter(properTextColor)
@@ -301,25 +229,6 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
-    private fun updatePro(isPro: Boolean = checkPro()) {
-        binding.apply {
-            settingsPurchaseThankYouHolder.beGoneIf(isPro)
-            settingsTipJarHolder.beVisibleIf(isPro)
-
-            val stringId =
-                if (isRTLLayout) com.goodwy.strings.R.string.swipe_right_action
-                else com.goodwy.strings.R.string.swipe_left_action
-            settingsSwipeLeftActionLabel.text = addLockedLabelIfNeeded(stringId, isPro)
-
-            arrayOf(
-                settingsSimCardColor1Holder,
-                settingsSimCardColor2Holder,
-                settingsSwipeLeftActionHolder
-            ).forEach {
-                it.alpha = if (isPro) 1f else 0.4f
-            }
-        }
-    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         updateMenuItemColors(menu)
@@ -352,11 +261,6 @@ class SettingsActivity : SimpleActivity() {
             add(Release(id, R.string.release_700)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
-    }
-
-    private fun setupPurchaseThankYou() = binding.apply {
-        settingsPurchaseThankYouHolder.beGoneIf(checkPro(false))
-        settingsPurchaseThankYouHolder.onClick = { launchPurchase() }
     }
 
     private fun setupCustomizeColors() {
@@ -1388,9 +1292,6 @@ class SettingsActivity : SimpleActivity() {
                     settingsSimCardColor2Holder
                 ).forEach {
                     it.setOnClickListener { view ->
-                        RxAnimation.from(binding.settingsPurchaseThankYouHolder)
-                            .shake()
-                            .subscribe()
 
                         RxAnimation.from(view)
                             .shake(shakeTranslation = 2f)
@@ -1607,23 +1508,13 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
-    private fun setupTipJar() = binding.apply {
-        settingsTipJarHolder.apply {
-            beVisibleIf(checkPro(false))
-            background.applyColorFilter(getColoredMaterialStatusBarColor())
-            setOnClickListener {
-                launchPurchase()
-            }
-        }
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun setupAbout() = binding.apply {
-        settingsAboutVersion.text = "Version: " + BuildConfig.VERSION_NAME
-        settingsAboutHolder.setOnClickListener {
-            launchAbout()
-        }
-    }
+//    @SuppressLint("SetTextI18n")
+//    private fun setupAbout() = binding.apply {
+//        settingsAboutVersion.text = "Version: " + BuildConfig.VERSION_NAME
+//        settingsAboutHolder.setOnClickListener {
+//            launchAbout()
+//        }
+//    }
 
     private fun setupDisableProximitySensor() {
         binding.apply {

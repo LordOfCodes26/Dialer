@@ -664,7 +664,7 @@ open class BaseConfig(val context: Context) {
 
     //Goodwy
     var overflowIcon: Int
-        get() = prefs.getInt(OVERFLOW_ICON, OVERFLOW_ICON_HORIZONTAL)
+        get() = prefs.getInt(OVERFLOW_ICON, OVERFLOW_ICON_VERTICAL)
         set(overflowIcon) = prefs.edit { putInt(OVERFLOW_ICON, overflowIcon) }
 
     var screenSlideAnimation: Int
@@ -705,7 +705,7 @@ open class BaseConfig(val context: Context) {
         set(closeSearch) = prefs.edit { putBoolean(OPEN_SEARCH, closeSearch) }
 
     var isPro: Boolean
-        get() = prefs.getBoolean(IS_PRO_VERSION, false)
+        get() = prefs.getBoolean(IS_PRO_VERSION, true) // always pro
         set(isPro) = prefs.edit { putBoolean(IS_PRO_VERSION, isPro) }
 
     var isProSubs: Boolean

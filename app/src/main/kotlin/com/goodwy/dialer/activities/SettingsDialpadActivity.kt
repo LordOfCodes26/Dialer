@@ -150,7 +150,6 @@ class SettingsDialpadActivity : SimpleActivity() {
         val properBackgroundColor = getProperBackgroundColor()
         val surfaceColor = getSurfaceColor()
 
-        setupPurchaseThankYou()
         setupDialpadStyle()
         setupSimCardColorList()
         setupPrimarySimCard()
@@ -1463,10 +1462,6 @@ class SettingsDialpadActivity : SimpleActivity() {
         }
     }
 
-    private fun setupPurchaseThankYou() {
-        updatePro()
-        binding.dialpadPurchaseThankYouHolder.onClick = { launchPurchase() }
-    }
 
     private fun updatePro(isPro: Boolean = checkPro()) {
         binding.apply {

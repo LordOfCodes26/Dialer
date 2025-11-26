@@ -394,7 +394,6 @@ class MainActivity : SimpleActivity() {
                     R.id.sort -> showSortingDialog(showCustomSorting = getCurrentFragment() is FavoritesFragment)
                     R.id.filter -> showFilterDialog()
                     R.id.settings -> launchSettings()
-                    R.id.about -> launchAbout()
                     R.id.change_view_type -> changeViewType()
                     R.id.column_count -> changeColumnCount()
                     else -> return@setOnMenuItemClickListener false
