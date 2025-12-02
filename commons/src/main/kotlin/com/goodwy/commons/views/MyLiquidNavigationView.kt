@@ -22,12 +22,15 @@ class MyLiquidNavigationView @JvmOverloads constructor(
     private var tabs: MutableList<MyTabItem> = mutableListOf()
 
     /** Compose-driven index — THIS controls UI */
-    private var selectedIndex by mutableStateOf(0)
+    private var selectedIndexState = mutableStateOf(0)
 
     private var listener: ((Int) -> Unit)? = null
     private var tabSelectedAction: ((MyTab) -> Unit)? = null
     private var tabUnselectedAction: ((MyTab) -> Unit)? = null
 
+    private var selectedIndex: Int
+        get() = selectedIndexState.value
+        set(value) { selectedIndexState.value = value }
     init {
         addView(
             composeView,
@@ -43,7 +46,7 @@ class MyLiquidNavigationView @JvmOverloads constructor(
         composeView.setContent {
             MyLiquidBottomTabs(
                 tabs = tabs.map { painterResource(it.iconRes) to it.label },
-                initialSelectedIndex = selectedIndex,
+                selectedTabIndex = this.selectedIndexState,
                 onTabSelected = { index ->
                     internalSelectFromUser(index)
                 }
@@ -118,7 +121,7 @@ class MyLiquidNavigationView @JvmOverloads constructor(
             listener?.invoke(index)
         }
 
-        selectedIndex = index
+        selectedIndex = index // <- also updates Compose
     }
 
 

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -23,7 +24,7 @@ import com.kyant.backdrop.backdrops.rememberCanvasBackdrop
 @Composable
 fun MyLiquidBottomTabs(
     tabs: List<Pair<Painter, String>>,
-    initialSelectedIndex: Int = 0,
+    selectedTabIndex: MutableState<Int>,
     onTabSelected: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -35,12 +36,11 @@ fun MyLiquidBottomTabs(
         drawRect(backgroundColor)
     }
 
-    var selectedTabIndex by rememberSaveable { mutableIntStateOf(initialSelectedIndex) }
 
     LiquidBottomTabs(
-        selectedTabIndex = { selectedTabIndex },
+        selectedTabIndex = { selectedTabIndex.value },
         onTabSelected = {
-            selectedTabIndex = it
+            selectedTabIndex.value = it
             onTabSelected(it)
         },
         backdrop = backdrop,
@@ -48,7 +48,7 @@ fun MyLiquidBottomTabs(
         modifier = modifier.padding(horizontal = 20.dp, vertical = 20.dp)
     ) {
         tabs.forEachIndexed { index, (icon, label) ->
-            LiquidBottomTab({ selectedTabIndex = index }) {
+            LiquidBottomTab({ selectedTabIndex.value = index }) {
                 Box(
                     Modifier
                         .size(28.dp)
