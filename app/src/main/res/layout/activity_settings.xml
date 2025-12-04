@@ -48,23 +48,23 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <RelativeLayout
-                        android:id="@+id/settings_customize_colors_holder"
-                        style="@style/SettingsHolderStyle">
+<!--                    <RelativeLayout-->
+<!--                        android:id="@+id/settings_customize_colors_holder"-->
+<!--                        style="@style/SettingsHolderStyle">-->
 
-                        <com.goodwy.commons.views.MyTextView
-                            android:id="@+id/settings_customize_colors_label"
-                            style="@style/SettingsTextLabelStyle"
-                            android:layout_marginEnd="68dp"
-                            android:text="@string/customize_colors"/>
+<!--                        <com.goodwy.commons.views.MyTextView-->
+<!--                            android:id="@+id/settings_customize_colors_label"-->
+<!--                            style="@style/SettingsTextLabelStyle"-->
+<!--                            android:layout_marginEnd="68dp"-->
+<!--                            android:text="@string/customize_colors"/>-->
 
-                        <ImageView
-                            android:id="@+id/settings_customize_colors_chevron"
-                            style="@style/SettingsChevronStyle"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:contentDescription="@string/customization_theme_summary"/>
-                    </RelativeLayout>
+<!--                        <ImageView-->
+<!--                            android:id="@+id/settings_customize_colors_chevron"-->
+<!--                            style="@style/SettingsChevronStyle"-->
+<!--                            android:layout_alignParentEnd="true"-->
+<!--                            android:layout_centerVertical="true"-->
+<!--                            android:contentDescription="@string/customization_theme_summary"/>-->
+<!--                    </RelativeLayout>-->
 
 <!--                    <RelativeLayout-->
 <!--                        android:id="@+id/settingsOverflowIconHolder"-->

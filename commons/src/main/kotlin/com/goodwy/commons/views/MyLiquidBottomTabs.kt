@@ -1,4 +1,4 @@
-package com.goodwy.commons.compose.liquid
+package com.goodwy.commons.views
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -7,10 +7,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
@@ -19,6 +15,8 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.goodwy.commons.compose.liquid.LiquidBottomTab
+import com.goodwy.commons.compose.liquid.LiquidBottomTabs
 import com.kyant.backdrop.backdrops.rememberCanvasBackdrop
 
 @Composable

@@ -24,7 +24,7 @@
     <color name="light_grey_stroke">#40FFFFFF</color>
 
     <!-- Color Customization -->
-    <color name="theme_light_text_color">@color/md_grey_800</color> <!--@color/md_grey_900-->
+    <color name="theme_light_text_color">@color/md_grey_black</color> <!--@color/md_grey_900 change text color to black-->
     <color name="theme_light_background_color">@color/md_grey_white</color>
     <color name="theme_gray_text_color">@color/md_grey_900</color>
     <color name="theme_gray_background_color">#ebebeb</color>

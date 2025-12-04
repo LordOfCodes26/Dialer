@@ -4,12 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
-import com.goodwy.commons.compose.liquid.MyLiquidBottomTabs
 
 class MyLiquidNavigationView @JvmOverloads constructor(
     context: Context,

@@ -266,7 +266,7 @@ open class BaseConfig(val context: Context) {
         set(isGlobalThemeEnabled) = prefs.edit { putBoolean(IS_GLOBAL_THEME_ENABLED, isGlobalThemeEnabled) }
 
     var isSystemThemeEnabled: Boolean
-        get() = prefs.getBoolean(IS_SYSTEM_THEME_ENABLED, false) //isSPlus()
+        get() = prefs.getBoolean(IS_SYSTEM_THEME_ENABLED, true) //isSPlus()
         set(isSystemThemeEnabled) = prefs.edit { putBoolean(IS_SYSTEM_THEME_ENABLED, isSystemThemeEnabled) }
 
     var isAutoThemeEnabled: Boolean

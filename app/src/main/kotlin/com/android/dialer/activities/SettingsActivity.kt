@@ -103,7 +103,7 @@ class SettingsActivity : SimpleActivity() {
         super.onResume()
         setupToolbar(binding.settingsToolbar, NavigationIcon.Arrow)
         //TODO should add liquidToggle interaction
-        setupCustomizeColors()
+//        setupCustomizeColors()
         setupDialPadOpen()
 //        setupOverflowIcon()        //disable overflow icon style
 //        setupFloatingButtonStyle() //disable floating button style
@@ -216,7 +216,7 @@ class SettingsActivity : SimpleActivity() {
             }
 
             arrayOf(
-                settingsCustomizeColorsChevron,
+//                settingsCustomizeColorsChevron,
                 settingsManageShownTabsChevron,
                 settingsExportCallsChevron,
                 settingsImportCallsChevron,
@@ -263,23 +263,23 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
-    private fun setupCustomizeColors() {
-        binding.settingsCustomizeColorsHolder.setOnClickListener {
-            startCustomizationActivity(
-                showAccentColor = true,
-                isCollection = isOrWasThankYouInstalled() || isCollection(),
-                productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
-                productIdListRu = arrayListOf(productIdX1, productIdX2, productIdX3),
-                subscriptionIdList = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
-                subscriptionIdListRu = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
-                subscriptionYearIdList = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
-                subscriptionYearIdListRu = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
-                playStoreInstalled = isPlayStoreInstalled(),
-                ruStoreInstalled = isRuStoreInstalled(),
-                showAppIconColor = true
-            )
-        }
-    }
+//    private fun setupCustomizeColors() {
+//        binding.settingsCustomizeColorsHolder.setOnClickListener {
+//            startCustomizationActivity(
+//                showAccentColor = true,
+//                isCollection = isOrWasThankYouInstalled() || isCollection(),
+//                productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
+//                productIdListRu = arrayListOf(productIdX1, productIdX2, productIdX3),
+//                subscriptionIdList = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
+//                subscriptionIdListRu = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
+//                subscriptionYearIdList = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
+//                subscriptionYearIdListRu = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
+//                playStoreInstalled = isPlayStoreInstalled(),
+//                ruStoreInstalled = isRuStoreInstalled(),
+//                showAppIconColor = true
+//            )
+//        }
+//    }
 
 //    private fun setupUseEnglish() {
 //        binding.apply {
