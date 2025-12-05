@@ -44,6 +44,7 @@ val Context.powerManager: PowerManager get() = getSystemService(Context.POWER_SE
 fun Context.getAvailableSIMCardLabels(): List<SIMAccount> {
     val simAccounts = mutableListOf<SIMAccount>()
     try {
+        //TODO change the phone account name
         telecomManager.callCapablePhoneAccounts.forEachIndexed { index, account ->
             val phoneAccount = telecomManager.getPhoneAccount(account)
             var label = phoneAccount.label.toString()

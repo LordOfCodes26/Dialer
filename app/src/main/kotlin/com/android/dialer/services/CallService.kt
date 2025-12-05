@@ -16,7 +16,6 @@ import com.android.dialer.extensions.isOutgoing
 import com.android.dialer.extensions.powerManager
 import com.android.dialer.helpers.*
 import com.android.dialer.models.Events
-import com.android.dialer.sim.SimStateManager
 import com.squareup.seismic.ShakeDetector
 import org.greenrobot.eventbus.EventBus
 
@@ -88,14 +87,6 @@ class CallService : InCallService() {
         stopProximitySensor()
         stopShakeDetector()
 
-        val slotIndex = getSlotIndexFromHandle(call.details.accountHandle)
-        val connectTime = call.details.connectTimeMillis
-        val minutesUsed = if (connectTime > 0) (((System.currentTimeMillis() - connectTime) + 59_999) / 60_000).toInt() else 0
-        if (slotIndex >= 0 && minutesUsed > 0) {
-            SimStateManager.addUsedMinutes(slotIndex, minutesUsed)
-            SimStateManager.saveAll(this)
-        }
-
         val wasPrimaryCall = call == CallManager.getPrimaryCall()
         CallManager.onCallRemoved(call)
         EventBus.getDefault().post(Events.RefreshCallLog)
@@ -117,16 +108,6 @@ class CallService : InCallService() {
     override fun onCallAudioStateChanged(audioState: CallAudioState?) {
         super.onCallAudioStateChanged(audioState)
         audioState?.let { CallManager.onAudioStateChanged(it) }
-    }
-
-    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
-    private fun getSlotIndexFromHandle(handle: PhoneAccountHandle?): Int {
-        if (handle == null) return -1
-        val sm = getSystemService(SubscriptionManager::class.java) ?: return -1
-        val list = sm.activeSubscriptionInfoList ?: return -1
-        for (info in list) if (info.subscriptionId.toString() == handle.id || info.iccId == handle.id) return info.simSlotIndex
-        for (info in list) if (info.carrierName?.toString() == handle.id) return info.simSlotIndex
-        return -1
     }
 
     override fun onDestroy() {
