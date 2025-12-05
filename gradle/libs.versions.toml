@@ -71,6 +71,7 @@ libphonenumberVersion = "9.0.14"
 badger = "1.1.22"
 swipeToActionLayout = "bd1eb3c8a3"
 lifecycleProcess = "2.10.0"
+foundationLayout = "1.9.5"
 [libraries]
 #EventBus
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
@@ -140,6 +141,7 @@ persian-date = { module = "com.github.samanzamani:PersianDate", version.ref = "p
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 kotlin-immutable-collections = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlin-immutable-collections" }
 lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycleProcess" }
+androidx-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref = "foundationLayout" }
 
 [bundles]
 compose = [

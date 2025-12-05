@@ -157,8 +157,10 @@ dependencies {
     implementation(libs.geocoder)
     implementation(project(":commons"))
     implementation(libs.lifecycle.process)
+    implementation(libs.androidx.foundation.layout)
     detektPlugins(libs.compose.detekt)
-
+    implementation("com.github.Dimezis:BlurView:version-3.2.0")
+    implementation("com.squareup:seismic:1.0.2")
     //Goodwy
     implementation(libs.shortcut.badger)
     implementation(libs.behavio.rule)

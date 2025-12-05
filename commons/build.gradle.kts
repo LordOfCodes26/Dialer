@@ -143,8 +143,9 @@ dependencies {
 
     //Goodwy
     implementation(project(":strings"))
-    implementation("io.github.kyant0:capsule:2.1.1")
-    implementation("io.github.kyant0:backdrop:1.0.0")
+    implementation(project(":AndroidLiquidGlassView"))
+    implementation("io.github.kyant0:capsule:2.1.2")
+    implementation("io.github.kyant0:backdrop:1.0.2")
 
     api(libs.billing.client)
     api(libs.rustore.client)

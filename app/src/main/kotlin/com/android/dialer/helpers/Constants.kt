@@ -60,6 +60,9 @@ const val CALL_BLOCK_BUTTON = "call_block_button"
 const val KEEP_CALLS_IN_POPUP = "keep_calls_in_popup"
 const val INIT_CALL_BLOCKING_SETUP = "init_call_blocking_setup"
 const val RECENT_OUTGOING_NUMBERS = "recent_outgoing_numbers"
+//CHero added
+const val SHAKE_TO_ANSWER = "shake_to_answer"
+
 
 const val ALL_TABS_MASK = TAB_CONTACTS or TAB_FAVORITES or TAB_CALL_HISTORY
 

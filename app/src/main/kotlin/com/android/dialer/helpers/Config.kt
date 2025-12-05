@@ -314,6 +314,10 @@ class Config(context: Context) : BaseConfig(context) {
             remove(RECENT_OUTGOING_NUMBERS).putStringSet(RECENT_OUTGOING_NUMBERS, recentOutgoingNumbers)
         }
 
+    //add chero
+    var shakeToAnswer: Boolean
+        get() = prefs.getBoolean(SHAKE_TO_ANSWER, false)
+        set(shakeToAnswer) = prefs.edit { putBoolean(SHAKE_TO_ANSWER, shakeToAnswer) }
     //Timer
     var timerSoundUri: String
         get() = prefs.getString(

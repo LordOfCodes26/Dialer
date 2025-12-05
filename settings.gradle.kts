@@ -18,3 +18,4 @@ dependencyResolutionManagement {
 include(":app")
 include(":commons")
 include(":strings")
+include(":AndroidLiquidGlassView")
